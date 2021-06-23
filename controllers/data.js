@@ -42,12 +42,12 @@ const insertData = (req, res) => {
       throw err 
     } else {
       if (type === 'income') {
-        balance = results[0].balance + total
+        balance = results[0].balance + parseInt(total)
       } else if (type === 'expense') {
-        balance = results[0].balance - total
+        balance = results[0].balance - parseInt(total)
       }
 
-      sql.query(`INSERT INTO account(type, title, total, balance) VALUES ('${type}', '${title}', ${total}, ${balance})`, function (err, results) {
+      sql.query(`INSERT INTO account(type, title, total, balance) VALUES ('${type}', '${title}', ${parseInt(total)}, ${balance})`, function (err, results) {
         if (err) {
           message = 'Failed'
           error = err
